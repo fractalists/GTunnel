@@ -14,6 +14,8 @@ A concise https-server for Google Search only. It's implemented by means like "r
 
 ## Usage
 
+Make HTTPS query like:
+
 ```
 https://<your-ip>:<port>/search?q=<your-query>
 ```
@@ -24,4 +26,11 @@ For example:
 https://54.183.58.87:8911/search?q=anti-mage
 ```
 
-Most languages are compatible.
+(Most languages are compatible.)
+
+
+
+**A highly available instance can be found at:**
+```
+https://g.xor.space/
+```
