@@ -46,8 +46,15 @@ public class GTunnel {
       }
 
       if (uri.startsWith("/search")) {
-        String response = sendGet(uri);
         System.out.println(t.getRequestURI().toString());
+
+        if (uri.equals("/search") {
+          uri = uri + "?tbm=vid";
+        } else {
+          uri = uri + "&tbm=vid";
+        }
+
+        String response = sendGet(uri);
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
         t.sendResponseHeaders(200, response.getBytes(Charset.forName("UTF-8")).length);
