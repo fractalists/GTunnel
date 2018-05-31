@@ -47,10 +47,17 @@ public class GTunnel {
       conn.setRequestProperty("Content-Type", "image/png");
 
       InputStream is = conn.getInputStream();
-      byte[] response = new byte[is.available()];
-      is.read(response);
+
+      int length = 0;
+      byte[] tmp = new byte[2048];
+      ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+      while ((length = is.read(tmp)) != -1) {
+        output.write(tmp, 0, length);
+      }
+
       is.close();
-      return response;
+      return output.toByteArray();
     }
 
     private static byte[] sendGetDev(HttpExchange t) throws IOException{
@@ -61,49 +68,53 @@ public class GTunnel {
       URL url = new URL(googleSearchUrlBase + query);
       HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
       conn.setRequestMethod(t.getRequestMethod());
+      conn.setRequestProperty("User-Agent", user_agent);
+      conn.setRequestProperty("Content-Type", "image/x-ico");
 
       for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
         conn.setRequestProperty(entry.getKey(), String.join(", ", entry.getValue()));
       }
 
       InputStream is = conn.getInputStream();
-      byte[] response = new byte[is.available()];
-      is.read(response);
+
+      int length = 0;
+      byte[] tmp = new byte[2048];
+      ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+      while ((length = is.read(tmp)) != -1) {
+        output.write(tmp, 0, length);
+      }
+
       is.close();
-      return response;
+      return output.toByteArray();
     }
 
     @Override
     public void handle(HttpExchange t) throws IOException {
-      byte[] response = sendGetDev(t);
-      t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-      t.sendResponseHeaders(200, response.length);
-      OutputStream os = t.getResponseBody();
-      os.write(response);
-      os.close();
+      String uri = t.getRequestURI().toString();
 
-//      if (uri.endsWith(".png")) {
-//        System.out.println("PNG: " + t.getRequestURI().toString());
-//        byte[] response = sendGet1(uri);
-//        t.getResponseHeaders().add("Content-Type", "image/png");
-//        t.sendResponseHeaders(200, response.length);
-//        OutputStream os = t.getResponseBody();
-//        os.write(response);
-//        os.close();
-//      }
-//
-//      if (uri.startsWith("/search")) {
-//        System.out.println(t.getRequestURI().toString());
-//
-//        String response = sendGet(uri);
-//        response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
-//        t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-//        t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-//        t.sendResponseHeaders(200, response.getBytes(Charset.forName("UTF-8")).length);
-//        OutputStream os = t.getResponseBody();
-//        os.write(response.getBytes(Charset.forName("UTF-8")));
-//        os.close();
-//      }
+      if (uri.endsWith(".png")) {
+        System.out.println("PNG: " + t.getRequestURI().toString());
+        byte[] response = sendGet1(uri);
+        t.getResponseHeaders().add("Content-Type", "image/png");
+        t.sendResponseHeaders(200, response.length);
+        OutputStream os = t.getResponseBody();
+        os.write(response);
+        os.close();
+      }
+
+      if (uri.startsWith("/search")) {
+        System.out.println(t.getRequestURI().toString());
+
+        String response = sendGet(uri);
+        response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
+        t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
+        t.sendResponseHeaders(200, response.getBytes(Charset.forName("UTF-8")).length);
+        OutputStream os = t.getResponseBody();
+        os.write(response.getBytes(Charset.forName("UTF-8")));
+        os.close();
+      }
     }
   }
 
