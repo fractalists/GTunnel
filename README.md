@@ -30,7 +30,5 @@ https://54.183.58.87:8911/search?q=anti-mage
 
 
 
-**A highly available instance can be found at:**
-```
-https://g.xor.space/
-```
+**A highly available instance can be found at:** 
+[https://g.xor.space/](https://g.xor.space/)
