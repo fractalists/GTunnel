@@ -93,6 +93,10 @@ public class GTunnel {
     public void handle(HttpExchange t) throws IOException {
       String uri = t.getRequestURI().toString();
 
+      if (uri.equals("/")) {
+        uri = "/search";
+      }
+
       if (uri.endsWith(".png")) {
         System.out.println("PNG: " + t.getRequestURI().toString());
         byte[] response = sendGet1(uri);
