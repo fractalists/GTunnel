@@ -23,7 +23,7 @@ https://<your-ip>:<port>/search?q=<your-query>
 For example:
 
 ```
-https://54.183.58.87:443/search?q=anti-mage
+https://54.183.58.87:8911/search?q=anti-mage
 ```
 
 (Most languages are compatible.)
