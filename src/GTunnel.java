@@ -121,11 +121,14 @@ public class GTunnel {
 
       if (uri.startsWith("/search")) {
         System.out.println(t.getRequestURI().toString());
-
         String response = sendGet(uri);
-        response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
-        response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none\"");
-        response = response.replaceFirst("class=\"gb_T\"", "class=\"gb_T\" style=\"display:none\"");
+
+        if (uri.equals("/search")) {
+          response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
+          response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none\"");
+          response = response.replaceFirst("class=\"gb_T\"", "class=\"gb_T\" style=\"display:none\"");
+        }
+
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
         t.sendResponseHeaders(200, response.getBytes(Charset.forName("UTF-8")).length);
