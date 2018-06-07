@@ -105,6 +105,18 @@ public class GTunnel {
         OutputStream os = t.getResponseBody();
         os.write(response);
         os.close();
+        return;
+      }
+
+      if (uri.endsWith(".gif")) {
+        System.out.println("GIF: " + t.getRequestURI().toString());
+        byte[] response = sendGet1(uri);
+        t.getResponseHeaders().add("Content-Type", "image/gif");
+        t.sendResponseHeaders(200, response.length);
+        OutputStream os = t.getResponseBody();
+        os.write(response);
+        os.close();
+        return;
       }
 
       if (uri.startsWith("/search")) {
