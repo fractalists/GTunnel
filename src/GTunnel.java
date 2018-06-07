@@ -131,6 +131,8 @@ public class GTunnel {
           response = response.replaceFirst("class=\"gb_b gb_hc\"", "class=\"gb_b gb_hc\" style=\"display:none;");
           response = response.replaceFirst("class=\"gb_7f gb_Fa gb_Jb\"", "class=\"gb_7f gb_Fa gb_Jb\" style=\"display:none;");
           response = response.replaceFirst("<div class=\"nojsv logocont ddl\" id=\"logocont\"><[^>]+>", "<div class=\"nojsv logocont ddl\" id=\"logocont\"><a href=\"/\">");
+          response = response.replaceFirst("<div class=\"hdtb-mitem hdtb-imb\"><[^>]+>Maps</a></div>", "");
+          response = response.replaceFirst("id=\"abar_button_opt\"", "id=\"abar_button_opt\" style=\"display:none;\"");
         }
 
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
