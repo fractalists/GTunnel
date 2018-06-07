@@ -105,13 +105,37 @@ public class GTunnel {
         OutputStream os = t.getResponseBody();
         os.write(response);
         os.close();
+        return;
       }
 
-      if (uri.startsWith("/search")) {
-        System.out.println(t.getRequestURI().toString());
+      if (uri.endsWith(".gif")) {
+        System.out.println("GIF: " + t.getRequestURI().toString());
+        byte[] response = sendGet1(uri);
+        t.getResponseHeaders().add("Content-Type", "image/gif");
+        t.sendResponseHeaders(200, response.length);
+        OutputStream os = t.getResponseBody();
+        os.write(response);
+        os.close();
+        return;
+      }
 
+      //if (uri.startsWith("/search")) {
+      if (true) {
+        System.out.println(t.getRequestURI().toString());
         String response = sendGet(uri);
-        response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
+        response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none;");
+        response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none;\"");
+
+        if (uri.equals("/search")) {
+          response = response.replaceFirst("id=\"gb\"", "id=\"gb\" style=\"display:none;\"");
+        } else {
+          response = response.replaceFirst("class=\"gb_b gb_hc\"", "class=\"gb_b gb_hc\" style=\"display:none;");
+          response = response.replaceFirst("class=\"gb_7f gb_Fa gb_Jb\"", "class=\"gb_7f gb_Fa gb_Jb\" style=\"display:none;");
+          response = response.replaceFirst("<div class=\"nojsv logocont ddl\" id=\"logocont\"><[^>]+>", "<div class=\"nojsv logocont ddl\" id=\"logocont\"><a href=\"/\">");
+          response = response.replaceFirst("<div class=\"hdtb-mitem hdtb-imb\"><[^>]+>Maps</a></div>", "");
+          response = response.replaceFirst("id=\"abar_button_opt\"", "id=\"abar_button_opt\" style=\"display:none;\"");
+        }
+
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
         t.sendResponseHeaders(200, response.getBytes(Charset.forName("UTF-8")).length);
