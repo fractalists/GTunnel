@@ -119,7 +119,8 @@ public class GTunnel {
         return;
       }
 
-      if (uri.startsWith("/search")) {
+      //if (uri.startsWith("/search")) {
+      if (true) {
         System.out.println(t.getRequestURI().toString());
         String response = sendGet(uri);
         response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none;");
