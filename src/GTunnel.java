@@ -126,7 +126,7 @@ public class GTunnel {
         if (uri.equals("/search")) {
           response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none");
           response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none\"");
-          response = response.replaceFirst("class=\"gb_T\"", "class=\"gb_T\" style=\"display:none\"");
+          response = response.replaceFirst("id=\"gb\"", "id=\"gb\" style=\"display:none\"");
         }
 
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
