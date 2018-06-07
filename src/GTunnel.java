@@ -124,9 +124,9 @@ public class GTunnel {
         System.out.println(t.getRequestURI().toString());
         String response = sendGet(uri);
         response = response.replaceFirst("behavior:url\\(#default#userData\\)", "display:none;");
+        response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none;\"");
 
         if (uri.equals("/search")) {
-          response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none;\"");
           response = response.replaceFirst("id=\"gb\"", "id=\"gb\" style=\"display:none;\"");
         } else {
           response = response.replaceFirst("class=\"gb_b gb_hc\"", "class=\"gb_b gb_hc\" style=\"display:none;");
