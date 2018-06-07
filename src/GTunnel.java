@@ -128,7 +128,8 @@ public class GTunnel {
           response = response.replaceFirst("class=\"fbar\"", "class=\"fbar\" style=\"display:none;\"");
           response = response.replaceFirst("id=\"gb\"", "id=\"gb\" style=\"display:none;\"");
         } else {
-          response = response.replaceFirst("class=\"gb_nb gb_Pg gb_R gb_Og gb_T\"\\s+style=\"", "class=\"gb_nb gb_Pg gb_R gb_Og gb_T\" style=\"display:none;");
+          response = response.replaceFirst("class=\"gb_b gb_hc\"", "class=\"gb_b gb_hc\" style=\"display:none;");
+          response = response.replaceFirst("class=\"gb_7f gb_Fa gb_Jb\"", "class=\"gb_7f gb_Fa gb_Jb\" style=\"display:none;");
         }
 
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
