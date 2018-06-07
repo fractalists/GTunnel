@@ -130,6 +130,7 @@ public class GTunnel {
         } else {
           response = response.replaceFirst("class=\"gb_b gb_hc\"", "class=\"gb_b gb_hc\" style=\"display:none;");
           response = response.replaceFirst("class=\"gb_7f gb_Fa gb_Jb\"", "class=\"gb_7f gb_Fa gb_Jb\" style=\"display:none;");
+          response = response.replaceFirst("<div class=\"nojsv logocont ddl\" id=\"logocont\"><[^>]+>", "<div class=\"nojsv logocont ddl\" id=\"logocont\"><a href=\"/\">");
         }
 
         t.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
