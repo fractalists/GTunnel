@@ -2,6 +2,7 @@
 *.out
 *.jks
 *.iml
+.DS_Store
 /.idea/
 /out/
 /res/

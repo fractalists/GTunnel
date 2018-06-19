@@ -23,7 +23,7 @@ https://<your-ip>:<port>/search?q=<your-query>
 For example:
 
 ```
-https://54.183.58.87:443/search?q=anti-mage
+https://127.0.0.1:443/search?q=anti-mage
 ```
 
 (Most languages are compatible.)
@@ -31,4 +31,4 @@ https://54.183.58.87:443/search?q=anti-mage
 
 
 **A highly available instance can be found at:** 
-[https://g.xor.space/](https://g.xor.space/)
+[https://g.d-d-p.com/](https://g.d-d-p.com/)
